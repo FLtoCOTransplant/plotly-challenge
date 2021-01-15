@@ -72,5 +72,12 @@ function makePlot(testId){
             },
         };
         Plotly.newPlot('bubble',data1,bubbleLayout); 
+    })
+}
 
-        
+// Review new ID
+function optionChanged(newId) {
+    // Select a new ID from the drop down menu
+    makePlot(newId);
+}
+

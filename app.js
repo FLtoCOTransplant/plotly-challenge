@@ -1,8 +1,8 @@
 // Create a function to pull in the json data
 // Using 'd3.json' gather the metadata for each sample
-d3.json('data.json').then((data)=>{
-    var id=data.names;
-    console.log(data.metadata);
+d3.json('samples.json').then((samples)=>{
+    var id=samples.names;
+    console.log(samples.metadata);
 
     var select=d3.selectAll('#selDataset');;
 
@@ -17,11 +17,11 @@ d3.json('data.json').then((data)=>{
 
 // Create horizontal bar chart with a dropdown menu
 function makePlot(testId){
-    d3.json('data.json').then((data)=>{
-        // This is the array
-        var samples=data.samples;
+    d3.json('samples.json').then((samples)=>{
+        // create an array
+        var samples=samples.samples;
         var testNum=samples.map(row=>row.id).indexOf(testId);
-        // Make bar plot
+        // Define the bar chart
         var otuValueTen=samples.map(row=>row.sample_values);
         var otuValueTen=otuValueTen[testNum].slice(0,10).reverse();
         var otuIdTen=samples.map(row=>row.otu_ids);

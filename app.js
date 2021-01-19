@@ -7,15 +7,17 @@ d3.json('samples.json').then((samples)=>{
     var select=d3.selectAll('#selDataset');;
 
     //clear the dataset
-    sample_metadata.html("");
+    //sample_metadata.html("");
 
-    Object.entries(id).forEach(([i,v])=>{
-    select.append('option').text(v);
+    id.forEach((v)=>{
+    select.append('option').text(v).property("value",v);
       
     })
+    firstid=id[0]
+    makePlot(firstid)
 })
 
-// Create define the source fo the data and make the charts
+// Define the source fo the data and make the charts
 function makePlot(testId){
     d3.json('samples.json').then((samples)=>{
         // create an array
@@ -64,8 +66,6 @@ function makePlot(testId){
         var bubbleLayout={
             xaxis:{
                 autochange: true,
-                height: 600,
-                width: 1000,
                 title: {
                     text: 'OTU ID'
                 }

@@ -4,10 +4,7 @@ d3.json('samples.json').then((samples)=>{
     var id=samples.names;
     console.log(samples.metadata);
 
-    var select=d3.selectAll('#sample-metadata');;
-    select.html("");
-    Object.entries(metadata).forEach(([key, value]) => {
-      select.append("p").text(`${key}: ${value}`);
+    var select=d3.selectAll('#selDataset');;
     
     //clear the dataset
     //sample_metadata.html("");
@@ -76,4 +73,10 @@ function makePlot(testId){
         };
         Plotly.newPlot('bubble',data1,bubbleLayout); 
     })
-})
+}
+
+// Review new ID
+//function optionChanged(newId) {
+    // Select a new ID from the drop down menu
+   // makePlot(newId);
+//}

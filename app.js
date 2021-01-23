@@ -5,7 +5,7 @@ d3.json('samples.json').then((samples)=>{
     console.log(samples.metadata);
 
     var select=d3.selectAll('#selDataset');;
-    
+      
     //clear the dataset
     //sample_metadata.html("");
 
@@ -15,7 +15,24 @@ d3.json('samples.json').then((samples)=>{
     })
     firstid=id[0]
     makePlot(firstid)
+    updateMeta(firstid)
 })
+// Update metadata
+function updateMeta(id){
+    // read in the data file 
+    d3.json('samples.json').then((samples)=>{
+        var meta=samples.metadata;
+        // Take the id and filter the variable meta
+        var results = meta.filter(newData => newData.id == id)[0]
+        // With the filtered results post them in the #sample-metadata div
+        var metadata=d3.selectAll('#sample-metadata');;    
+        metadata.html("");
+        // Show all the meta data
+        Object.entries(results).forEach(([key, value]) => {
+            metadata.append("p").text(`${key}: ${value}`);
+        })
+    })
+}
 
 // Define the source of the data and make the charts
 function makePlot(testId){
@@ -76,7 +93,9 @@ function makePlot(testId){
 }
 
 // Review new ID
-//function optionChanged(newId) {
+function optionChanged(newId) {
     // Select a new ID from the drop down menu
-   // makePlot(newId);
-//}
+    makePlot(newId);
+    // Updates the metadata
+    updateMeta(newId);
+}

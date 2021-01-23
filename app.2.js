@@ -6,7 +6,7 @@ d3.json('samples.json').then((samples)=>{
 
     var select=d3.selectAll('#selDataset');;
     metadata_panel.html("");
-  Object.entries(metadata).forEach(([key, value]) => {
+    Object.entries(metadata).forEach(([key, value]) => {
       metadata_panel.append("p").text(`${key}: ${value}`);
     
     //clear the dataset
